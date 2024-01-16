@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Todoey uses speech recognition to enable you to add tasks to your to-do list using voice commands.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Todoey requires microphone access to listen to your voice commands for adding tasks to your to-do list.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
