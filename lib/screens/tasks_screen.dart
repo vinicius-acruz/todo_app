@@ -17,7 +17,6 @@ class TasksScreen extends StatelessWidget {
             context: context,
             builder: (context) => SingleChildScrollView(
               child: Container(
-                height: 600,
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: AddTaskScreen(),
