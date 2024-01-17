@@ -3,6 +3,13 @@
         android:label="todoey_flutter"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- Permissions for speech recognition and microphone access -->
+        <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+        <uses-permission android:name="android.permission.INTERNET"/>
+        <uses-permission android:name="android.permission.BLUETOOTH"/>
+        <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+        <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -30,12 +37,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
-    <!-- Permissions for speech recognition and microphone access -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    
 
     <!-- Additional configuration for Android SDK 30 or later -->
     <queries>

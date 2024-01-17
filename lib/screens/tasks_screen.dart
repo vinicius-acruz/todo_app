@@ -3,7 +3,6 @@ import 'package:todoey_flutter/models/task_data.dart';
 import 'package:todoey_flutter/widgets/tasks_list.dart';
 import 'package:todoey_flutter/screens/add_task_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey_flutter/widgets/voice_control.dart';
 
 class TasksScreen extends StatelessWidget {
   @override
@@ -18,6 +17,7 @@ class TasksScreen extends StatelessWidget {
             context: context,
             builder: (context) => SingleChildScrollView(
               child: Container(
+                height: 600,
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: AddTaskScreen(),
@@ -68,7 +68,6 @@ class TasksScreen extends StatelessWidget {
                     fontSize: 18.0,
                   ),
                 ),
-                VoiceControl(),
               ],
             ),
           ),
