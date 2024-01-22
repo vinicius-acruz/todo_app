@@ -14,6 +14,10 @@ class TasksList extends StatelessWidget {
             return TaskTile(
               taskTitle: task.name,
               isChecked: task.isDone,
+              dueDate: task.dueDate, // Pass the dueDate to TaskTile
+              priority: task.priority, // Pass the priority to TaskTile
+              reminderTime:
+                  task.reminderTime, // Pass the reminderTime to TaskTile
               checkboxCallback: (checkboxState) {
                 taskData.updateTask(task);
               },

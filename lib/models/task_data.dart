@@ -17,13 +17,19 @@ class TaskData extends ChangeNotifier {
     return _tasks.length;
   }
 
-  void addTask(String taskName) {
-    _tasks.add(Task(name: taskName));
+  void addTask(String taskName,
+      {DateTime? dueDate, String priority = 'Low', DateTime? reminderTime}) {
+    final newTask = Task(
+      name: taskName,
+      dueDate: dueDate,
+      priority: priority,
+      reminderTime: reminderTime,
+    );
+    _tasks.add(newTask);
     notifyListeners();
   }
 
   void deleteTask(Task task) {
-    print('olá');
     _tasks.remove(task);
     notifyListeners();
   }
