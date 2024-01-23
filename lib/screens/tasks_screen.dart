@@ -75,7 +75,7 @@ class TasksScreen extends StatelessWidget {
           Expanded(
             child: Container(
               padding:
-                  const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 100),
+                  const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 35),
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(

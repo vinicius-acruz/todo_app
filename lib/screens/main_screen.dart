@@ -44,11 +44,11 @@ class MainScreenState extends State<MainScreen> {
           // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            label: 'Tasks',
+            label: 'Tasks to do',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.check_circle),
-            label: 'Completed',
+            label: 'Completed Tasks',
           ),
         ],
         currentIndex: _selectedIndex,

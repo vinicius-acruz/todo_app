@@ -143,4 +143,16 @@ class TaskData extends ChangeNotifier {
     task.toggleDone();
     notifyListeners();
   }
+
+  // Completed tasks methods
+
+  // Get only completed tasks
+  UnmodifiableListView<Task> get completedTasks {
+    return UnmodifiableListView(_tasks.where((task) => task.isDone));
+  }
+
+  // Get the count of completed tasks
+  int get completedTaskCount {
+    return _tasks.where((task) => task.isDone).length;
+  }
 }
