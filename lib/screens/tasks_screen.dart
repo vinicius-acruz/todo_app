@@ -5,6 +5,8 @@ import 'package:todoey_flutter/screens/add_task_screen.dart';
 import 'package:provider/provider.dart';
 
 class TasksScreen extends StatelessWidget {
+  const TasksScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +74,8 @@ class TasksScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding:
+                  const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 100),
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
