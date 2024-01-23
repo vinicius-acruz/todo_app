@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:todoey_flutter/models/task.dart';
 import 'dart:collection';
 
@@ -63,6 +64,9 @@ class TaskData extends ChangeNotifier {
     ),
   ];
 
+  // List for completed tasks
+  List<Task> _completedTasks = [];
+
 // Current filter
   String currentFilter = 'All';
 
@@ -117,9 +121,20 @@ class TaskData extends ChangeNotifier {
     return UnmodifiableListView(_tasks);
   } // Secure that the tasks list wont be modified
 
+  UnmodifiableListView<Task> get completedTasks {
+    return UnmodifiableListView(_completedTasks);
+  } // Secure that the tasks list wont be modified
+
   int get taskCount {
     return _tasks.length;
   }
+
+  int get completedTaskCount {
+    return _completedTasks.length;
+  }
+
+  // Add a callback for when a task is added
+  Function(int)? onTaskAdded;
 
   void addTask(String taskName,
       {DateTime? dueDate, String priority = 'Low', DateTime? reminderTime}) {
@@ -131,6 +146,12 @@ class TaskData extends ChangeNotifier {
       order: _tasks.length,
     );
     _tasks.add(newTask);
+    // After adding the task, notify the listener
+    int newIndex = tasks.length - 1; // Get the index of the new task
+    if (onTaskAdded != null) {
+      onTaskAdded!(newIndex);
+    }
+
     notifyListeners();
   }
 
@@ -141,18 +162,15 @@ class TaskData extends ChangeNotifier {
 
   void updateTask(Task task) {
     task.toggleDone();
+    if (task.isDone) {
+      // Move the task to the completed tasks list
+      _completedTasks.add(task);
+      _tasks.remove(task);
+    } else {
+      // If task is marked as not done, move it back to the main tasks list
+      _tasks.add(task);
+      _completedTasks.remove(task);
+    }
     notifyListeners();
-  }
-
-  // Completed tasks methods
-
-  // Get only completed tasks
-  UnmodifiableListView<Task> get completedTasks {
-    return UnmodifiableListView(_tasks.where((task) => task.isDone));
-  }
-
-  // Get the count of completed tasks
-  int get completedTaskCount {
-    return _tasks.where((task) => task.isDone).length;
   }
 }

@@ -5,12 +5,16 @@ import 'package:todoey_flutter/screens/add_task_screen.dart';
 import 'package:provider/provider.dart';
 
 class TasksScreen extends StatelessWidget {
-  const TasksScreen({super.key});
+  final bool showDone;
+
+  const TasksScreen({super.key, required this.showDone});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
+      floatingActionButtonLocation:
+          CustomFabLocation(MediaQuery.of(context).size.width),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //create new task
@@ -27,43 +31,53 @@ class TasksScreen extends StatelessWidget {
           );
         },
         backgroundColor: Colors.lightBlueAccent,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             padding: const EdgeInsets.only(
-              top: 60.0,
+              top: 50.0,
               left: 30.0,
               right: 30.0,
-              bottom: 30.0,
+              bottom: 20.0,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 30.0,
-                  child: Icon(
-                    Icons.list,
-                    size: 30.0,
-                    color: Colors.lightBlueAccent,
-                  ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 30.0,
+                      child: Icon(
+                        Icons.list,
+                        size: 30.0,
+                        color: Colors.lightBlueAccent,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: 10.0,
                 ),
-                const Text(
-                  'Todoey',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 50.0,
-                    fontWeight: FontWeight.w700,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                        height: 130,
+                        child: Image.asset(
+                          'assets/2dologo.png',
+                          fit: BoxFit.contain,
+                        )),
+                  ],
                 ),
                 Text(
-                  '${Provider.of<TaskData>(context).taskCount} Tasks',
+                  showDone
+                      ? '${Provider.of<TaskData>(context).completedTaskCount} Tasks'
+                      : '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
@@ -74,18 +88,29 @@ class TasksScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              padding:
-                  const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 35),
+              padding: const EdgeInsets.all(20.0),
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20.0),
                       topRight: Radius.circular(20.0))),
-              child: TasksList(),
+              child: TasksList(showDone: showDone),
             ),
           ),
         ],
       ),
     );
+  }
+}
+
+class CustomFabLocation extends FloatingActionButtonLocation {
+  final double screenWidth;
+
+  CustomFabLocation(this.screenWidth);
+
+  @override
+  Offset getOffset(ScaffoldPrelayoutGeometry scaffoldGeometry) {
+    // Use screenWidth to calculate the position
+    return Offset(screenWidth * 0.8, 320);
   }
 }

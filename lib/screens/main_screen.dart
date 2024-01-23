@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todoey_flutter/screens/completed_task_screen.dart';
 import 'package:todoey_flutter/screens/tasks_screen.dart';
 // Import other screens you need
 // import 'package:todoey_flutter/screens/home_screen.dart';
@@ -18,8 +17,12 @@ class MainScreenState extends State<MainScreen> {
   // List of widget options for each tab
   static final List<Widget> _widgetOptions = <Widget>[
     // HomeScreen(), // Uncomment if you have a HomeScreen
-    const TasksScreen(),
-    CompletedTasksScreen(), // Uncomment if you have a CompletedTasksScreen
+    const TasksScreen(
+      showDone: false,
+    ),
+    const TasksScreen(
+      showDone: true,
+    ),
     // Add more screens as needed
   ];
 
